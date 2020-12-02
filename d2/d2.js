@@ -3,9 +3,32 @@ const fs = require('fs');
 var d2 = {
     d2a: function () {
         try {
-            let answer = {"puzzle":"D2a"};
+            let answer = {"puzzle":"D2a", "answer": 0};
 
+            // read the file
+            const data = fs.readFileSync('./d2/d2.txt', 'UTF-8');
+
+            const passwords = data.split(/\r?\n/);
+
+            for (line of passwords) {
+                if (line.length <= 3) continue;
+                let rule = line.split(" ");
+                let pwd = line.split(": ")[1];
+
+                let min = rule[0].split("-")[0];
+                let max = rule[0].split("-")[1];
+                let key = rule[1].replace(":","");
+
+                let pieces = (pwd.split(key).length)-1;
             
+                //console.log("Min [%d] Max [%d] Key [%s] password [%s] pieces [%d]", min, max, key, pwd, pieces);
+
+                if (pieces >= min && pieces <= max) {
+                    answer["answer"] = answer["answer"]+1;
+                }
+            }
+            
+            return answer;
     
         } catch (err) {
             console.error(err);
@@ -48,5 +71,5 @@ var d2 = {
     }
 }
 
-module.exports = d1;
+module.exports = d2;
 
