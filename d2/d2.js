@@ -36,34 +36,31 @@ var d2 = {
     },
     d2b: function () {
         try {
-            let answer = {"puzzle":"D2b"};
+            let answer = {"puzzle":"D2b", "answer": 0};
 
             // read contents of the file
-            const data = fs.readFileSync('./d1/d1.txt', 'UTF-8');
+            const data = fs.readFileSync('./d2/d2.txt', 'UTF-8');
         
-            // split the contents by new line
-            const expenses = data.split(/\r?\n/).map((value) => parseInt(value));
-        
-            for (let i=0; i<=expenses.length; i++) {
-                for (let j=1; j<=expenses.length; j++) {
-                    for (let k=2; k<=expenses.length; k++) {
-                        if (i === j) continue;
-                        if (j === k) continue;
-                        if (i === k) continue;
-        
-                        let sum = expenses[i] + expenses[j] + expenses[k];
-                        if (sum === 2020) {
+            const passwords = data.split(/\r?\n/);
 
-                            answer["a"] = expenses[i];
-                            answer["b"] = expenses[j];
-                            answer["c"] = expenses[k];
-                            answer["answer"] = expenses[i]*expenses[j]*expenses[k];
+            for (line of passwords) {
+                if (line.length <= 3) continue;
+                let rule = line.split(" ");
+                let pwd = line.split(": ")[1];
 
-                            return answer;
-                        }
-                    }
+                let p1 = parseInt(rule[0].split("-")[0]);
+                let p2 = parseInt(rule[0].split("-")[1]);
+                let key = rule[1].replace(":","");
+            
+                // console.log("p1 [%d] p2 [%d] Key [%s] password [%s] ", p1, p2, key, pwd);
+                // console.log("[%s] [%s] [%s] [%s] [%s]", pwd, key, pwd.charAt(p1+1), pwd.charAt(p2+1), (pwd.charAt(p1+1) == key || pwd.charAt(p2+1) == key))
+
+                if (pwd.charAt(p1+1) == key ? pwd.charAt(p2+1) != key : pwd.charAt(p2+1) == key){
+                    answer["answer"] = answer["answer"]+1;
                 }
             }
+            
+            return answer;
         
         } catch (err) {
             console.error(err);
