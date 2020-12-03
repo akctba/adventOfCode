@@ -40,6 +40,7 @@ var d2 = {
 
             // read contents of the file
             const data = fs.readFileSync('./d2/d2.txt', 'UTF-8');
+            //const data = fs.readFileSync('./d2/test.txt', 'UTF-8');
         
             const passwords = data.split(/\r?\n/);
 
@@ -51,11 +52,13 @@ var d2 = {
                 let p1 = parseInt(rule[0].split("-")[0]);
                 let p2 = parseInt(rule[0].split("-")[1]);
                 let key = rule[1].replace(":","");
+
+                let match = pwd.charAt(p1-1) == key ? pwd.charAt(p2-1) != key : pwd.charAt(p2-1) == key;
             
                 // console.log("p1 [%d] p2 [%d] Key [%s] password [%s] ", p1, p2, key, pwd);
-                // console.log("[%s] [%s] [%s] [%s] [%s]", pwd, key, pwd.charAt(p1+1), pwd.charAt(p2+1), (pwd.charAt(p1+1) == key || pwd.charAt(p2+1) == key))
+                // console.log("[%s] [%s] [%s] [%s] [%s]", pwd, key, pwd.charAt(p1-1), pwd.charAt(p2-1), match)
 
-                if (pwd.charAt(p1+1) == key ? pwd.charAt(p2+1) != key : pwd.charAt(p2+1) == key){
+                if (match) {
                     answer["answer"] = answer["answer"]+1;
                 }
             }
