@@ -32,6 +32,9 @@ rl.question(`Do you wanna run which advent puzzle? (1-25)\n`, (puzzle) => {
             let w_d3a = d3.d3a();
             console.log(JSON.stringify(w_d3a));
 
+            let w_d3b = d3.d3b();
+            console.log(JSON.stringify(w_d3b));
+
             break;
         case "4":
 

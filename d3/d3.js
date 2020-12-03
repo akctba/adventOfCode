@@ -12,7 +12,7 @@ var d3 = {
 
             let x = 0;
             for (let y=0; y < map.length; y++) {
-                console.log("x [%d] y [%d]", x, y);
+                //console.log("x [%d] y [%d]", x, y);
 
                 let square = map[y].charAt(x);
                 if (square === "#") {
@@ -32,33 +32,38 @@ var d3 = {
             console.error(err);
         }
     },
-    d2b: function () {
+    d3b: function () {
         try {
-            let answer = {"puzzle":"D3b", "answer": 0};
+            let answer = {"puzzle":"D3b", "answer": -1};
 
             // read contents of the file
             const data = fs.readFileSync('./d3/d3.txt', 'UTF-8');
-            //const data = fs.readFileSync('./d2/test.txt', 'UTF-8');
-        
-            const passwords = data.split(/\r?\n/);
 
-            for (line of passwords) {
-                if (line.length <= 3) continue;
-                let rule = line.split(" ");
-                let pwd = line.split(": ")[1];
+            const map = data.split(/\r?\n/);
 
-                let p1 = parseInt(rule[0].split("-")[0]);
-                let p2 = parseInt(rule[0].split("-")[1]);
-                let key = rule[1].replace(":","");
+            const slopes = [[1,1],[3,1],[5,1],[7,1],[1,2]];
 
-                let match = pwd.charAt(p1-1) == key ? pwd.charAt(p2-1) != key : pwd.charAt(p2-1) == key;
-            
-                // console.log("p1 [%d] p2 [%d] Key [%s] password [%s] ", p1, p2, key, pwd);
-                // console.log("[%s] [%s] [%s] [%s] [%s]", pwd, key, pwd.charAt(p1-1), pwd.charAt(p2-1), match)
+            let x, trees;
+            for (slope of slopes) {
+                //console.log("\nSlope " + slope);
+                x = 0;
+                trees = 0;
+   
+                for (let y=0; y < map.length; y+=slope[1]) {
+                    //console.log("x [%d] y [%d]", x, y);
 
-                if (match) {
-                    answer["answer"] = answer["answer"]+1;
+                    let square = map[y].charAt(x);
+                    if (square === "#") {
+                        //answer["answer"] = 1+answer["answer"];
+                        trees++;
+                    }
+                    
+                    x+=slope[0];
+                    if (x >= map[y].length) {
+                        x = x-map[y].length;
+                    }
                 }
+                answer["answer"] = answer["answer"]<0 ? trees : answer["answer"]*trees;
             }
             
             return answer;
