@@ -6,7 +6,7 @@ var d1 = {
             let answer = {"puzzle":"D1a"};
 
             // read contents of the file
-            const data = fs.readFileSync('./d1/d1.txt', 'UTF-8');
+            const data = fs.readFileSync('./inputs/d1.txt', 'UTF-8');
     
             // split the contents by new line
             const expenses = data.split(/\r?\n/).map((value) => parseInt(value));
@@ -34,7 +34,7 @@ var d1 = {
             let answer = {"puzzle":"D1b"};
 
             // read contents of the file
-            const data = fs.readFileSync('./d1/d1.txt', 'UTF-8');
+            const data = fs.readFileSync('./inputs/d1.txt', 'UTF-8');
         
             // split the contents by new line
             const expenses = data.split(/\r?\n/).map((value) => parseInt(value));

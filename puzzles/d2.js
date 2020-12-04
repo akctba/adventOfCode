@@ -6,7 +6,7 @@ var d2 = {
             let answer = {"puzzle":"D2a", "answer": 0};
 
             // read the file
-            const data = fs.readFileSync('./d2/d2.txt', 'UTF-8');
+            const data = fs.readFileSync('./inputs/d2.txt', 'UTF-8');
 
             const passwords = data.split(/\r?\n/);
 
@@ -39,7 +39,7 @@ var d2 = {
             let answer = {"puzzle":"D2b", "answer": 0};
 
             // read contents of the file
-            const data = fs.readFileSync('./d2/d2.txt', 'UTF-8');
+            const data = fs.readFileSync('./inputs/d2.txt', 'UTF-8');
             //const data = fs.readFileSync('./d2/test.txt', 'UTF-8');
         
             const passwords = data.split(/\r?\n/);

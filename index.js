@@ -1,6 +1,6 @@
-const d1 = require('./d1/d1');
-const d2 = require('./d2/d2');
-const d3 = require('./d3/d3');
+const d1 = require('./puzzles/d1');
+const d2 = require('./puzzles/d2');
+const d3 = require('./puzzles/d3');
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -34,7 +34,6 @@ rl.question(`Do you wanna run which advent puzzle? (1-25)\n`, (puzzle) => {
 
             let w_d3b = d3.d3b();
             console.log(JSON.stringify(w_d3b));
-
             break;
         case "4":
 
@@ -58,11 +57,9 @@ rl.question(`Do you wanna run which advent puzzle? (1-25)\n`, (puzzle) => {
 
             break;
         default:
-            console.log("Invalid option");
+            console.log("Okey, bye!");
             break;
     }
     rl.close();
 });
-
-
 

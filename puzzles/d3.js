@@ -6,7 +6,7 @@ var d3 = {
             let answer = {"puzzle":"D3a", "answer": 0};
 
             // read the file
-            const data = fs.readFileSync('./d3/d3.txt', 'UTF-8');
+            const data = fs.readFileSync('./inputs/d3.txt', 'UTF-8');
 
             const map = data.split(/\r?\n/);
 
@@ -37,7 +37,7 @@ var d3 = {
             let answer = {"puzzle":"D3b", "answer": -1};
 
             // read contents of the file
-            const data = fs.readFileSync('./d3/d3.txt', 'UTF-8');
+            const data = fs.readFileSync('./inputs/d3.txt', 'UTF-8');
 
             const map = data.split(/\r?\n/);
 
