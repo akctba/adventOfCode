@@ -54,7 +54,6 @@ var d3 = {
 
                     let square = map[y].charAt(x);
                     if (square === "#") {
-                        //answer["answer"] = 1+answer["answer"];
                         trees++;
                     }
                     
