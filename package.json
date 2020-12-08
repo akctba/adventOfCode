@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/akctba/adventOfCode/issues"
   },
-  "homepage": "https://github.com/akctba/adventOfCode#readme"
+  "homepage": "https://github.com/akctba/adventOfCode#readme",
+  "dependencies": {
+    "objects-to-csv": "^1.3.6"
+  }
 }
