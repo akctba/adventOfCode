@@ -59,7 +59,7 @@ var d4 = {
             answer["total"] = passports.length;
 
             passports = passports.map(p => p.sort().filter(a => {
-                return a.indexOf("cid") != 0;
+                return a.indexOf("cid:") < 0;
             }));
             passports = passports.filter(p => {
                 return p.length >= 7
