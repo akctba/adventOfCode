@@ -1,6 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
 
+let ids = [];
+
 var d5 = {
     d5a: function () {
         try {
@@ -12,6 +14,8 @@ var d5 = {
 
             let highest = -1;
 
+            
+
             for (pass of passes) {
                 minRow = 0;
                 maxRow = 127;
@@ -19,8 +23,6 @@ var d5 = {
                 minCol = 0;
                 maxCol = 7;
                 col = 0;
-                
-                console.log(pass);
 
                 for (let i=0; i<7; i++) {
                     let r = pass.charAt(i);
@@ -49,8 +51,8 @@ var d5 = {
                     //console.log("%d %s %d %d", i, r, minCol, maxCol);
                 }
 
-
                 let seatId = minRow * 8 + minCol;
+                ids.push(seatId);
 
                 highest = (seatId > highest ? seatId : highest);
             }
@@ -66,13 +68,17 @@ var d5 = {
     d5b: function () {
         try {
             let answer = {"puzzle":"d5b", "answer": 0};
-
-            const data = fs.readFileSync('./inputs/d5.txt', 'UTF-8');
-
-            let passports = data.split(/\r?\n\r?\n/);
-
             
-            
+            if(!!ids) {
+                ids.sort();
+                for(let i=0; i < ids.length; i++) {
+                    if(ids[i+1] - ids[i] > 1) {
+                        answer.answer = ids[i]+1;
+                        break;
+                    }
+                }
+            }
+
             return answer;
         
         } catch (err) {
