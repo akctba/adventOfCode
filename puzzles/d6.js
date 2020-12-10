@@ -1,6 +1,8 @@
 const fs = require('fs');
 const readline = require('readline');
 
+var distinct = str => [...new Set(str)].join('');
+
 var d6 = {
     d6a: function () {
         try {
@@ -10,13 +12,16 @@ var d6 = {
 
             let groups = data.split(/\r?\n\r?\n/);
 
-            
+            groups = groups.map(g => {
+                return distinct(g.replace(/\n/g, ''));
+            })
 
-            
+            //console.log(groups);
 
-            
-            //answer.answer = ?;
-            
+            answer.answer = groups.reduce((count, group) => {
+                return count + group.length;
+            }, 0);
+
             return answer;
     
         } catch (err) {
