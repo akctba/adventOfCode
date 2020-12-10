@@ -3,6 +3,7 @@ const d2 = require('./puzzles/d2');
 const d3 = require('./puzzles/d3');
 const d4 = require('./puzzles/d4');
 const d5 = require('./puzzles/d5');
+const d6 = require('./puzzles/d6');
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -53,7 +54,11 @@ rl.question(`Do you wanna run which advent puzzle? (1-25)\n`, (puzzle) => {
             console.log(JSON.stringify(w_d5b));
             break;
         case "6":
+            let w_d6a = d6.d6a();
+            console.log(JSON.stringify(w_d6a));
 
+            let w_d6b = d6.d6b();
+            console.log(JSON.stringify(w_d6b));
             break;
         case "7":
 
