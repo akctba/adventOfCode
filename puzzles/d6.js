@@ -1,3 +1,4 @@
+const { group } = require('console');
 const fs = require('fs');
 const readline = require('readline');
 
@@ -33,12 +34,32 @@ var d6 = {
             let answer = {"puzzle":"d6b", "answer": 0};
             
             
+            const data = fs.readFileSync('./inputs/d6.txt', 'UTF-8');
 
+            let groups = data.split(/\r?\n\r?\n/);
 
+            groups = groups.map(g => {
+                return g.split(/\r?\n/).sort((a,b)=>{return a.length-b.length});
+            })
 
+            groups.forEach((group, i) => {
+                //console.log("Group:\n" + group);
+                let members = group.length;
 
+                let first = group[0];
 
-
+                for(q of first) {
+                    let count = 0;
+                    for (memb of group) {
+                        if(memb.indexOf(q) >= 0) {
+                            count++;
+                        }
+                    }
+                    if (members === count) {
+                        answer.answer = answer.answer+1;
+                    }
+                }
+            });
 
             return answer;
         
