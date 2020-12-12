@@ -71,7 +71,7 @@ rl.question(`Do you wanna run which advent puzzle? (1-25)\n`, (puzzle) => {
             break;
         case "8":
             let w_d8a = d8.d8a();
-            console.log(JSON.stringify(w_d7a));
+            console.log(JSON.stringify(w_d8a));
 
             let w_d8b = d8.d8b();
             console.log(JSON.stringify(w_d8b));
